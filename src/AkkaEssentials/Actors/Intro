@@ -1,0 +1,13 @@
+Actors
+
+
+Traditional objects store their state as data and we call their methods
+Actors store the data but the way we interact with them asynchronously
+
+Every interaction happens through sending messages asynchronously
+
+Messages are asynchronously passed
+since real life physical messages take time too
+think of it like sending a text rather than poking you friends brain
+
+
