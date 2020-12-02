@@ -71,5 +71,8 @@ order A then B is always guaranteed.
 Intro
 ActorCapabilities
 ActorBehaviour
+ChildActors
+ChildActorsExercise
+ActorLogging
 
 
