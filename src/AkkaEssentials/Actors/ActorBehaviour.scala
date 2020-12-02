@@ -218,6 +218,4 @@ object ActorBehaviour extends App {
 
   // refactoring to not use state means to check the places state is being used and
   // replace it with context.become instead
-
-
 }
