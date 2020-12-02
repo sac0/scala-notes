@@ -73,6 +73,7 @@ ActorCapabilities
 ActorBehaviour
 ChildActors
 ChildActorsExercise
-ActorLogging
+ActorLoggingDemo
+IntroAkkaConfiguration
 
 
