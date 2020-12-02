@@ -1,5 +1,6 @@
 package AkkaEssentials.Recap
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 object ThreadModelLimitations extends App {
@@ -35,7 +36,7 @@ object ThreadModelLimitations extends App {
   // 2. Delegating something to a thread is a pain.
   // How do we send some information to a particular thread and want to give additional information
   // basically pass a new runnable to an existing runnable
-  var task: Runnable = null
+  var task: Runnable = _
   val runningThread: Thread = new Thread(() => {
     while (true) {
       while (task == null) {

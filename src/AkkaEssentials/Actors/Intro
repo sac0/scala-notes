@@ -11,3 +11,65 @@ since real life physical messages take time too
 think of it like sending a text rather than poking you friends brain
 
 
+How Akka Actually works
+
+
+So how does this whole actor magic actually work and that is the subject of this video.
+OK so long story short an actor system actually has a thread pool that it shares with actors.
+
+A thread is active in that it can run code and an actor has some things attached to it.
+It has a message handler that thing which we define in the receive method in our actor classes.
+It has a message queue that akka uses to store the messages that we send to this actor.
+So whenever we send a message it's in queued in this mailbox.
+So an actor is just a data structure.
+It's passive.It actually needs a thread to run. So the way akka does it is by spawning a number of threads.
+A small number in the dozens or maybe in the hundreds and these threads can handle a huge amount of
+actors in the millions per gigabytes of heap.
+
+And the way that Akka manages to do that is by scheduling actors for execution on these small number
+of threads and the mechanism goes like this.
+
+Sending a message - This is just queueing into the mailbox
+This is thread safe and it's being done by Akka behind the scenes so you don't need to concern yourself
+with that.
+
+Processing a message
+This is more interesting because as we mentioned before an actor is just a data
+structure. It needs a thread to actually execute any code so needs to schedule one to execute the actor.
+So at some point a thread will take control of this actor and it will start queuing messages from the
+actor's mailbox and for every one of those messages it will invoke the message handler.
+As a result the actor might change his state or send messages to other actors.
+After that the message is simply discarded.
+This whole process happens a bunch of times.
+Now at some point the Akka thread scheduler decides to unscheduled this actor for execution.
+At which point the thread releases control of this actor and it will move on to do something else.
+So this whole process offers us some guarantees.
+
+First of all only one thread may operate on an actor at any one time which makes actors effectively
+single threaded.
+
+That also means that we don't need to do any synchronization over the actors state because only one
+thread has access to the actor's internal state at any time.
+Additionally the thread may never release the actor in the middle of processing messages suppressing
+messages is atomic.
+
+Message delivery gauarantee
+Now akka also offers some message delivery guarantees because the message delivery environment is inherently
+unreliable.
+So Akka offers at most once deliver a guarantee meaning that the receiving actor receives at most
+once the message that I want to send it it will never receive duplicates.
+Also for any sender receiver pair the message order is kept.
+
+What this means is that if I have two actors Alice and Bob and Alice sends Bob two messages a and then
+B the most once delivery guarantee means that Bob will never receive any duplicates of either the messages
+A or B and the second delivery guarantee is that Bob will always receive the message A before message B.
+
+But if Bob also receives messages from other actors those might be intermingled between in B but the
+order A then B is always guaranteed.
+
+
+Intro
+ActorCapabilities
+ActorBehaviour
+
+
