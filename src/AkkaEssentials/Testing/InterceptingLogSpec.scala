@@ -1,16 +1,37 @@
 package AkkaEssentials.Testing
 
+import AkkaEssentials.Testing.InterceptingLogSpec.{Checkout, CheckoutActor}
 import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
-import akka.testkit.{ImplicitSender, TestKit}
+import akka.testkit.{EventFilter, ImplicitSender, TestKit}
+import com.typesafe.config.ConfigFactory
 import org.scalatest.BeforeAndAfterAll
 import org.scalatest.wordspec.AnyWordSpecLike
 
-class InterceptingLogSpec extends TestKit(ActorSystem("InterceptingLogSpec"))
+class InterceptingLogSpec extends TestKit(ActorSystem("InterceptingLogSpec", ConfigFactory.load().getConfig("interceptingLogMessages")))
   with ImplicitSender
-  with BeforeAndAfterAll
-  with AnyWordSpecLike {
+  with AnyWordSpecLike
+  with BeforeAndAfterAll {
+  // order of with traits natters a lot
   override def afterAll(): Unit = {
     TestKit.shutdownActorSystem(system)
+  }
+
+  val item = "Akka Course"
+  val creditCard = "1234-1234-1234-1234"
+  val invalidCreditCard = "0234-1234-1234-1234"
+  "A checkout Flow" should {
+    "correct log the dispatch of an order" in {
+      EventFilter.info(pattern = s"Order [0-9]+ for the item $item has been dispatched", occurrences = 1) intercept {
+        val checkoutRef = system.actorOf(Props[CheckoutActor])
+        checkoutRef ! Checkout(item, creditCard)
+      }
+    }
+    "freak out on payment denied" in {
+      EventFilter[RuntimeException](occurrences = 1) intercept {
+        val checkoutRef = system.actorOf(Props[CheckoutActor])
+        checkoutRef ! Checkout(item, invalidCreditCard)
+      }
+    }
   }
 }
 
@@ -43,28 +64,31 @@ object InterceptingLogSpec {
     def pendingPayment(item: String): Receive = {
       case PaymentAccepted =>
         fulfilmentManager ! DispatchOrder(item)
-        context.become(pendingFulfilMent(item))
-      case PaymentDenied => println("Payment Denied")
-
+        context.become(pendingFulfilment)
+      case PaymentDenied => throw new RuntimeException("PaymentDenied")
     }
 
-    def pendingFulfilMent(item: String): Receive = {
+    def pendingFulfilment: Receive = {
       case OrderConfirmed => context.become(awaitingCheckout)
     }
-
   }
 
   class PaymentManager extends Actor {
     override def receive: Receive = {
       case AuthorizeCard(card) =>
         if (card startsWith "0") sender() ! PaymentDenied
-        else sender() ! PaymentAccepted
+        else {
+          // intercept method waits for only 4 seconds
+          // chage filter-leeway for 5 seconds and uncomment this
+//          Thread.sleep(4000)
+          sender() ! PaymentAccepted
+        }
     }
 
   }
 
   class FulfilmentManager extends Actor with ActorLogging {
-    var orderId = 43;
+    var orderId = 43
 
     override def receive: Receive = {
       case DispatchOrder(item: String) => orderId += 1

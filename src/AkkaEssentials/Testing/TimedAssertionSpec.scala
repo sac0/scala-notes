@@ -67,8 +67,6 @@ object TimedAssertionSpec {
           sender() ! WorkResult(1)
         }
     }
-
-
   }
 
 }
