@@ -1,4 +1,4 @@
-package AkkaEssentials
+package AkkaEssentials.Infrastructure
 
 import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Cancellable, Props, Timers}
 
@@ -14,6 +14,7 @@ object TimersSchedulers extends App {
   }
 
   val system: ActorSystem = ActorSystem("SchedulerTimersDemo")
+
   import system.dispatcher
 
   val simpleActor: ActorRef = system.actorOf(Props[SimpleActor])
@@ -25,12 +26,13 @@ object TimersSchedulers extends App {
     simpleActor ! "reminder"
   }(system.dispatcher)
 
-  val routine: Cancellable = system.scheduler.scheduleAtFixedRate(1 second, 2 seconds){
+  val routine: Cancellable = system.scheduler.scheduleAtFixedRate(1 second, 2 seconds) {
     () => simpleActor ! "reminder"
   }(system.dispatcher)
-  system.scheduler.scheduleOnce(5 seconds){
+  system.scheduler.scheduleOnce(5 seconds) {
     routine.cancel()
   }(system.dispatcher)
+
   /**
    * Exercise: implement a self-closing actor
    *
@@ -75,9 +77,13 @@ object TimersSchedulers extends App {
    */
 
   case object TimerKey
+
   case object Start
+
   case object Reminder
+
   case object Stop
+
   class TimerBasedHeartbeatActor extends Actor with ActorLogging with Timers {
     timers.startSingleTimer(TimerKey, Start, 500 millis)
 
