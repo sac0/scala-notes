@@ -74,5 +74,4 @@ object BackpressureBasics extends App {
   import scala.concurrent.duration._
   fastSource.throttle(10, 1 second).runWith(Sink.foreach(println))
 
-
 }
