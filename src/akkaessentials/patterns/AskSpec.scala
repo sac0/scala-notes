@@ -1,6 +1,6 @@
 package akkaessentials.patterns
 
-import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, ActorSystem, Props}
 import akka.pattern.{ask, pipe}
 import akka.testkit.{ImplicitSender, TestKit}
 import akka.util.Timeout
@@ -26,7 +26,7 @@ class AskSpec extends TestKit(ActorSystem("AskSpec"))
     authenticatorTestSuite(Props[PipedAuthManager])
   }
 
-  def authenticatorTestSuite(props: Props) = {
+  def authenticatorTestSuite(props: Props): Unit = {
     import AuthManager._
 
     "fail to authenticate a non-registered user" in {
@@ -86,7 +86,7 @@ object AskSpec {
   }
 
   class AuthManager extends Actor with ActorLogging {
-    protected val authDb = context.actorOf(Props[KVActor])
+    protected val authDb: ActorRef = context.actorOf(Props[KVActor])
 
     implicit val timeout: Timeout = Timeout(1 second)
 
@@ -121,7 +121,7 @@ object AskSpec {
       case Authenticate(username, password) => handleAuthentication(username, password)
     }
 
-    def handleAuthentication(username: String, password: String) = {
+    def handleAuthentication(username: String, password: String): Unit = {
       val originalSender = sender()
       val future = authDb ? Read(username)
       future.onComplete {
@@ -141,7 +141,9 @@ object AskSpec {
       }(context.dispatcher)
     }
   }
+
   class PipedAuthManager extends AuthManager {
+
     import AuthManager._
 
     override def handleAuthentication(username: String, password: String): Unit = {
