@@ -10,16 +10,16 @@ import scala.concurrent.duration._
 
 object CustomGraphShapes extends App {
 
-  implicit val system:ActorSystem = ActorSystem("CustomGraphShapes")
+  implicit val system: ActorSystem = ActorSystem("CustomGraphShapes")
 
   // balance 2x3 shape
-  case class Balance2x3 (
-                          in0: Inlet[Int],
-                          in1: Inlet[Int],
-                          out0: Outlet[Int],
-                          out1: Outlet[Int],
-                          out2: Outlet[Int]
-                        ) extends Shape {
+  case class Balance2x3(
+                         in0: Inlet[Int],
+                         in1: Inlet[Int],
+                         out0: Outlet[Int],
+                         out1: Outlet[Int],
+                         out2: Outlet[Int]
+                       ) extends Shape {
 
     // Inlet[T], Outlet[T]
     override val inlets: immutable.Seq[Inlet[_]] = List(in0, in1)
