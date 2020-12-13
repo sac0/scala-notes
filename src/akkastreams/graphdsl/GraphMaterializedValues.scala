@@ -76,7 +76,7 @@ object GraphMaterializedValues extends App {
   val enhancedFlowCounterFuture = simpleSource.viaMat(enhanceFlow(simpleFlow))(Keep.right).toMat(simpleSink)(Keep.left).run()
   enhancedFlowCounterFuture onComplete {
     case Success(count) => println(s"count of elements in the stream is $count")
-    case _ => println("A failure has occured")
+    case _ => println("An error has occurred while counting the number of elements in stream")
   }
 
 
