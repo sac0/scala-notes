@@ -1,6 +1,7 @@
 package akkastreams.techniques
 import java.util.Date
 
+import akka.NotUsed
 import akka.actor.ActorSystem
 import akka.stream.OverflowStrategy
 import akka.stream.scaladsl.{Flow, Sink, Source}
@@ -23,12 +24,13 @@ object AdvancedBackpressure extends App {
   )
   val eventSource = Source(events)
 
+  // This a fast service to fetch on call emails
   val onCallEngineer = "daniel@rockthejvm.com" // a fast service for fetching oncall emails
 
   def sendEmail(notification: Notification): Unit =
     println(s"Dear ${notification.email}, you have an event: ${notification.pagerEvent}") // actually send an email
 
-  val notificationSink = Flow[PagerEvent].map(event => Notification(onCallEngineer, event))
+  val notificationFlow = Flow[PagerEvent].map(event => Notification(onCallEngineer, event))
     .to(Sink.foreach[Notification](sendEmail))
 
   // standard
@@ -51,10 +53,10 @@ object AdvancedBackpressure extends App {
     .map(resultingEvent => Notification(onCallEngineer, resultingEvent))
 
   //  eventSource.via(aggregateNotificationFlow).async.to(Sink.foreach[Notification](sendEmailSlow)).run()
-  // alternative to backpressure
+  //  alternative to backpressure
 
-  /*
-    Slow producers: extrapolate/expand
+  /**
+   * Slow producers: extrapolate/expand
    */
   import scala.concurrent.duration._
   val slowCounter = Source(LazyList.from(1)).throttle(1, 1 second)
