@@ -14,13 +14,18 @@ object BackpressureBasics extends App {
    * consumer will send a signal to producers to slow down
    */
 
-  implicit val system = ActorSystem("BackpressureBasics")
+  implicit val system: ActorSystem = ActorSystem("BackpressureBasics")
 
-  val fastSource = Source(1 to 1000)
-  val slowSink = Sink.foreach[Int] { x =>
-    Thread.sleep(1000)
-    println(s"Sink $x")
-  }
+  val fastSource = Source(1 to 1000).map({
+    x => {
+//      println(s"x$x")
+      x
+    }
+  })
+    val slowSink = Sink.foreach[Int] { x =>
+      Thread.sleep(1000)
+      println(s"Sink $x")
+    }
 
   // this is fusion and not backpressure run once a second
   //  fastSource.to(slowSink).run()
@@ -48,11 +53,11 @@ object BackpressureBasics extends App {
    * drop elements on overflow
    * tear down the stream failure
    */
-  val bufferedFlow = simpleFlow.buffer(10,OverflowStrategy.dropHead)
-  fastSource.async
-    .via(bufferedFlow).async
-    .to(slowSink)
-    .run
+  val bufferedFlow = simpleFlow.buffer(4, OverflowStrategy.backpressure)
+    fastSource.async
+      .via(bufferedFlow).async
+      .to(slowSink)
+      .run
   /*
   1-16: nobody is backpressured
   17-26: flow will buffer, flow will start dropping at the next element
@@ -71,7 +76,8 @@ object BackpressureBasics extends App {
    */
 
   // throttling
-  import scala.concurrent.duration._
-  fastSource.throttle(10, 1 second).runWith(Sink.foreach(println))
+
+  //  import scala.concurrent.duration._
+  //  fastSource.throttle(10, 1 second).runWith(Sink.foreach(println))
 
 }
