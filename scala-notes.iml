@@ -17,5 +17,10 @@
     <orderEntry type="library" name="com.typesafe.akka:akka-http-spray-json_2.13:10.2.2" level="project" />
     <orderEntry type="library" name="com.typesafe.akka:akka-http-testkit_2.13:10.2.2" level="project" />
     <orderEntry type="library" name="com.pauldijou:jwt-spray-json_2.13:4.3.0" level="project" />
+    <orderEntry type="library" name="com.typesafe.akka:akka-persistence_2.13:2.6.10" level="project" />
+    <orderEntry type="library" name="com.google.protobuf:protobuf-java:3.14.0" level="project" />
+    <orderEntry type="library" name="org.iq80.leveldb:leveldb:0.12" level="project" />
+    <orderEntry type="library" name="com.typesafe.akka:akka-http_2.13:10.2.2" level="project" />
+    <orderEntry type="library" name="org.fusesource.leveldbjni:leveldbjni-all:1.8" level="project" />
   </component>
 </module>

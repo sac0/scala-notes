@@ -18,14 +18,14 @@ object BackpressureBasics extends App {
 
   val fastSource = Source(1 to 1000).map({
     x => {
-//      println(s"x$x")
+            println(s"x$x")
       x
     }
   })
-    val slowSink = Sink.foreach[Int] { x =>
-      Thread.sleep(1000)
-      println(s"Sink $x")
-    }
+  val slowSink = Sink.foreach[Int] { x =>
+    Thread.sleep(1000)
+    println(s"Sink $x")
+  }
 
   // this is fusion and not backpressure run once a second
   //  fastSource.to(slowSink).run()
@@ -42,10 +42,10 @@ object BackpressureBasics extends App {
    * Buffering is a reaction to backpressure
    */
 
-//  fastSource.async
-//    .via(simpleFlow).async
-//    .to(slowSink)
-//    .run()
+  //  fastSource.async
+  //    .via(simpleFlow).async
+  //    .to(slowSink)
+  //    .run()
   /**
    * Reactions to Backpressure
    * slow down if possible
@@ -53,13 +53,13 @@ object BackpressureBasics extends App {
    * drop elements on overflow
    * tear down the stream failure
    */
-  val bufferedFlow = simpleFlow.buffer(4, OverflowStrategy.backpressure)
-    fastSource.async
-      .via(bufferedFlow).async
-      .to(slowSink)
-      .run
+  val bufferedFlow = simpleFlow.buffer(100, OverflowStrategy.backpressure)
+  fastSource.async
+    .via(bufferedFlow).async
+    .to(slowSink)
+    .run
   /*
-  1-16: nobody is backpressured
+  1-16: nobody is back pressured
   17-26: flow will buffer, flow will start dropping at the next element
   26-1000: flow will always drop the oldest element
     => 991-1000 => 992 - 1001 => sink
