@@ -33,7 +33,7 @@ object ConnectionLevel extends App with PaymentJsonProtocol {
 
   val creditCards = List(
     CreditCard("4242-4242-4242-4242", "424", "tx-test-account"),
-    CreditCard("1234-1234-1234-1234", "123", "tx-daniels-account"),
+    CreditCard("1234-1234-1234-1234", "123", "tx-Sachins-account"),
     CreditCard("1234-1234-4321-4321", "321", "my-awesome-account")
   )
 

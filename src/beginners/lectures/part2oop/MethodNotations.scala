@@ -3,7 +3,7 @@ package beginners.lectures.part2oop
 import scala.language.postfixOps
 
 /**
- * Created by Daniel.
+ * Created by Sachin.
  */
 object MethodNotations extends App {
 

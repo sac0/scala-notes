@@ -1,7 +1,7 @@
 package beginners.lectures.part1basics
 
 /**
-  * Created by Daniel on 07-May-18.
+  * Created by Sachin on 07-May-18.
   */
 object StringOps extends App {
 

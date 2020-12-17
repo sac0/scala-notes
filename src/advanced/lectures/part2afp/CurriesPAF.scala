@@ -1,7 +1,7 @@
 package advanced.lectures.part2afp
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object CurriesPAF extends App {
 
@@ -47,10 +47,10 @@ object CurriesPAF extends App {
   // underscores are powerful
   def concatenator(a: String, b: String, c: String) = a + b + c
   val insertName = concatenator("Hello, I'm ", _: String, ", how are you?") // x: String => concatenator(hello, x, howarewyou)
-  println(insertName("Daniel"))
+  println(insertName("Sachin"))
 
   val fillInTheBlanks = concatenator("Hello, ", _: String, _: String) // (x, y) => concatenator("Hello, ", x, y)
-  println(fillInTheBlanks("Daniel", " Scala is awesome!"))
+  println(fillInTheBlanks("Sachin", " Scala is awesome!"))
 
   // EXERCISES
   /*

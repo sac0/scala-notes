@@ -1,7 +1,7 @@
 package advanced.lectures.part4implicits
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object TypeClasses extends App {
 

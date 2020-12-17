@@ -4,7 +4,7 @@ import scala.collection.mutable
 import scala.util.Random
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object ThreadCommunication extends App {
 

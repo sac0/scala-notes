@@ -84,7 +84,7 @@ object Snapshots extends App {
   }
 
   val system = ActorSystem("SnapshotsDemo")
-  val chat = system.actorOf(Chat.props("daniel123", "martin345"))
+  val chat = system.actorOf(Chat.props("Sachin123", "martin345"))
 
   //  for (i <- 1 to 100000) {
   //    chat ! ReceivedMessage(s"Akka Rocks $i")

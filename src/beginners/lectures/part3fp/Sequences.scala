@@ -3,7 +3,7 @@ package beginners.lectures.part3fp
 import scala.util.Random
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Sequences extends App {
 

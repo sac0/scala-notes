@@ -3,7 +3,7 @@ package beginners.lectures.part3fp
 import java.util.Random
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Options extends App {
 

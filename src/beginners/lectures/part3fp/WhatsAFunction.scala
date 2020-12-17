@@ -1,7 +1,7 @@
 package beginners.lectures.part3fp
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object WhatsAFunction extends App {
 

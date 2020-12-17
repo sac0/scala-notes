@@ -3,7 +3,7 @@ package advanced.lectures.part3concurrency
 import java.util.concurrent.Executors
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Intro extends App {
 

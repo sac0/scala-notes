@@ -3,7 +3,7 @@ package advanced.exercises
 import scala.annotation.tailrec
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 trait MySet[A] extends (A => Boolean) {
 

@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 
 abstract class MyStream[+A] {

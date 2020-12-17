@@ -1,7 +1,7 @@
 package advanced.lectures.part5ts
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object PathDependentTypes extends App {
 

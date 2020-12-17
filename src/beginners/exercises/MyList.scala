@@ -1,7 +1,7 @@
 //package beginners.exercises
 //
 ///**
-// * Created by Daniel.
+// * Created by Sachin.
 // */
 ////abstract class MyList[+A] {
 ////

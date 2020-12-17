@@ -3,7 +3,7 @@ package beginners.lectures.part3fp
 import scala.annotation.tailrec
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object TuplesAndMaps extends App {
 
@@ -17,7 +17,7 @@ object TuplesAndMaps extends App {
   // Maps - keys -> values
   val aMap: Map[String, Int] = Map()
 
-  val phonebook = Map(("Jim", 555), "Daniel" -> 789, ("JIM", 9000)).withDefaultValue(-1)
+  val phonebook = Map(("Jim", 555), "Sachin" -> 789, ("JIM", 9000)).withDefaultValue(-1)
   // a -> b is sugar for (a, b)
   println(phonebook)
 
@@ -41,8 +41,8 @@ object TuplesAndMaps extends App {
 
   // conversions to other collections
   println(phonebook.toList)
-  println(List(("Daniel", 555)).toMap)
-  val names = List("Bob", "James", "Angela", "Mary", "Daniel", "Jim")
+  println(List(("Sachin", 555)).toMap)
+  val names = List("Bob", "James", "Angela", "Mary", "Sachin", "Jim")
   println(names.groupBy(name => name.charAt(0)))
 
   /*

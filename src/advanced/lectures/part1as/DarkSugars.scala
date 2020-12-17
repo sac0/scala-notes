@@ -3,7 +3,7 @@ package advanced.lectures.part1as
 import scala.util.Try
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object DarkSugars extends App {
 

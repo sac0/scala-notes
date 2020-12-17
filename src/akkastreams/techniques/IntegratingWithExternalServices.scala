@@ -27,9 +27,9 @@ object IntegratingWithExternalServices extends App {
   ))
 
   object PagerService {
-    private val engineers = List("Daniel", "John", "Lady Gaga")
+    private val engineers = List("Sachin", "John", "Lady Gaga")
     private val emails = Map(
-      "Daniel" -> "daniel@rockthejvm.com",
+      "Sachin" -> "Sachin@rockthejvm.com",
       "John" -> "john@rockthejvm.com",
       "Lady Gaga" -> "ladygaga@rtjvm.com"
     )
@@ -57,9 +57,9 @@ object IntegratingWithExternalServices extends App {
   // pagedEngineerEmails.to(pagedEmailsSink).run()
 
   class PagerActor extends Actor with ActorLogging {
-    private val engineers = List("Daniel", "John", "Lady Gaga")
+    private val engineers = List("Sachin", "John", "Lady Gaga")
     private val emails = Map(
-      "Daniel" -> "daniel@rockthejvm.com",
+      "Sachin" -> "Sachin@rockthejvm.com",
       "John" -> "john@rockthejvm.com",
       "Lady Gaga" -> "ladygaga@rtjvm.com"
     )

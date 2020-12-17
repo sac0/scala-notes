@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Recap extends App {
 
@@ -93,7 +93,7 @@ object Recap extends App {
 
   // Scala collections: Seqs, Arrays, Lists, Vectors, Maps, Tuples
   val aMap = Map(
-    "Daniel" -> 789,
+    "Sachin" -> 789,
     "Jess" -> 555
   )
 

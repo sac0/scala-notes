@@ -7,7 +7,7 @@ import scala.concurrent.duration._
 // important for futures
 import scala.concurrent.ExecutionContext.Implicits.global
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object FuturesPromises extends App {
 
@@ -136,7 +136,7 @@ object FuturesPromises extends App {
     }
   }
 
-  println(BankingApp.purchase("Daniel", "iPhone 12", "rock the jvm store", 3000))
+  println(BankingApp.purchase("Sachin", "iPhone 12", "rock the jvm store", 3000))
 
   // promises
 

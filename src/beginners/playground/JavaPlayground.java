@@ -1,7 +1,7 @@
 package beginners.playground;
 
 /**
- * Created by Daniel.
+ * Created by Sachin.
  */
 public class JavaPlayground {
 

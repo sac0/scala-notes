@@ -1,7 +1,7 @@
 package advanced.lectures.part2afp
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Monads extends App {
 

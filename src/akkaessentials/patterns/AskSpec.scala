@@ -31,21 +31,21 @@ class AskSpec extends TestKit(ActorSystem("AskSpec"))
 
     "fail to authenticate a non-registered user" in {
       val authManager = system.actorOf(props)
-      authManager ! Authenticate("daniel", "rtjvm")
+      authManager ! Authenticate("Sachin", "rtjvm")
       expectMsg(AuthFailure(AUTH_FAILURE_NOT_FOUND))
     }
 
     "fail to authenticate if invalid password" in {
       val authManager = system.actorOf(props)
-      authManager ! RegisterUser("daniel", "rtjvm")
-      authManager ! Authenticate("daniel", "iloveakka")
+      authManager ! RegisterUser("Sachin", "rtjvm")
+      authManager ! Authenticate("Sachin", "iloveakka")
       expectMsg(AuthFailure(AUTH_FAILURE_PASSWORD_INCORRECT))
     }
 
     "successfully authenticate a registered user" in {
       val authManager = system.actorOf(props)
-      authManager ! RegisterUser("daniel", "rtjvm")
-      authManager ! Authenticate("daniel", "rtjvm")
+      authManager ! RegisterUser("Sachin", "rtjvm")
+      authManager ! Authenticate("Sachin", "rtjvm")
       expectMsg(AuthSuccess)
     }
   }

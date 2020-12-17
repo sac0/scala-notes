@@ -3,7 +3,7 @@ package advanced.exercises
 import advanced.lectures.part4implicits.TypeClasses.User
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object EqualityPlayground extends App {
 

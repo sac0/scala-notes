@@ -7,7 +7,7 @@ import scala.collection.parallel.immutable.ParVector
 import scala.concurrent.forkjoin.ForkJoinPool
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object ParallelUtils extends App {
 

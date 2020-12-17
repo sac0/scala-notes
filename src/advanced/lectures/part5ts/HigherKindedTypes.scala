@@ -4,7 +4,7 @@ import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object HigherKindedTypes extends App {
 

@@ -64,13 +64,13 @@ object VotingDemo extends App {
     "Bob" -> "Roland",
     "Charlie" -> "Martin",
     "David" -> "Jonas",
-    "Daniel" -> "Martin"
+    "Sachin" -> "Martin"
   )
 
   //  votesMap.keys.foreach { citizen =>
   //    votingStation ! Vote(citizen, votesMap(citizen))
   //  }
 
-  votingStation ! Vote("Daniel", "Daniel")
+  votingStation ! Vote("Sachin", "Sachin")
   votingStation ! "print"
 }

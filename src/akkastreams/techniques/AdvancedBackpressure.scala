@@ -25,7 +25,7 @@ object AdvancedBackpressure extends App {
   val eventSource = Source(events)
 
   // This a fast service to fetch on call emails
-  val onCallEngineer = "daniel@rockthejvm.com" // a fast service for fetching oncall emails
+  val onCallEngineer = "Sachin@rockthejvm.com" // a fast service for fetching oncall emails
 
   def sendEmail(notification: Notification): Unit =
     println(s"Dear ${notification.email}, you have an event: ${notification.pagerEvent}") // actually send an email

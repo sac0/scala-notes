@@ -81,7 +81,7 @@ object WebsocketsDemo extends App {
   val socialFeed = Source(
     List(
       SocialPost("Martin", "Scala 3 has been announced!"),
-      SocialPost("Daniel", "A new Rock the JVM course is open!"),
+      SocialPost("Sachin", "A new Rock the JVM course is open!"),
       SocialPost("Martin", "I killed Java.")
     )
   )

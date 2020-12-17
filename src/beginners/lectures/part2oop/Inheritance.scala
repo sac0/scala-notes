@@ -1,7 +1,7 @@
 package beginners.lectures.part2oop
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object Inheritance extends App {
 

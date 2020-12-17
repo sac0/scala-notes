@@ -3,7 +3,7 @@ package beginners.lectures.part1basics
 import scala.annotation.tailrec
 
 /**
-  * Created by Daniel on 07-May-18.
+  * Created by Sachin on 07-May-18.
   */
 object Recursion extends App {
 

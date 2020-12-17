@@ -5,7 +5,7 @@ import java.util.Date
 import lectures.part4implicits.JSONSerialization.JSONNumber
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object JSONSerialization extends App {
 
@@ -61,7 +61,7 @@ object JSONSerialization extends App {
   }
 
   val data = JSONObject(Map(
-    "user" -> JSONString("Daniel"),
+    "user" -> JSONString("Sachin"),
     "posts" -> JSONArray(List(
       JSONString("Scala Rocks!"),
       JSONNumber(453)

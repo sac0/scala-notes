@@ -1,11 +1,11 @@
 package advanced.lectures.part4implicits
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object ImplicitsIntro extends App {
 
-  val pair = "Daniel" -> "555"
+  val pair = "Sachin" -> "555"
   val intPair = 1 -> 2
 
   case class Person(name: String) {

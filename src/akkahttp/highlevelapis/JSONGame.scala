@@ -82,7 +82,7 @@ object MarshallingJSON extends App
   val playersList = List(
     Player("martin_killz_u", "Warrior", 70),
     Player("rolandbraveheart007", "Elf", 67),
-    Player("daniel_rock03", "Wizard", 30)
+    Player("Sachin_rock03", "Wizard", 30)
   )
 
   playersList.foreach { player =>

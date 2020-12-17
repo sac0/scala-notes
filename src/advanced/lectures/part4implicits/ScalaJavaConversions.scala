@@ -2,7 +2,7 @@ package advanced.lectures.part4implicits
 
 import java.{util => ju}
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object ScalaJavaConversions extends App {
 

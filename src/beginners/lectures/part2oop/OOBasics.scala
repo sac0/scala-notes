@@ -1,7 +1,7 @@
 package beginners.lectures.part2oop
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object OOBasics extends App {
 
@@ -31,7 +31,7 @@ object OOBasics extends App {
   val person = new Person("John", 26)
   val anotherPerson = new Person("John", 26)
   println(person.x)
-  person.greet("Daniel")
+  person.greet("Sachin")
   person.greet()
 
   val author = new Writer("Charles", "Dickens", 1812)

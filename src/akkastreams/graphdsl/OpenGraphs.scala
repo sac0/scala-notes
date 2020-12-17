@@ -160,7 +160,7 @@ object OpenGraphs extends App {
 
   val transactionSource = Source(List(
     Transaction("5273890572", "Paul", "Jim", 100, new Date),
-    Transaction("3578902532", "Daniel", "Jim", 100000, new Date),
+    Transaction("3578902532", "Sachin", "Jim", 100000, new Date),
     Transaction("5489036033", "Jim", "Alice", 7000, new Date)
   ))
 

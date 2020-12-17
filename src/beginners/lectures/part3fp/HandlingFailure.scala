@@ -3,7 +3,7 @@ package beginners.lectures.part3fp
 import scala.util.{Random, Try, Failure, Success}
 
 /**
-  * Created by Daniel.
+  * Created by Sachin.
   */
 object HandlingFailure extends App {
 

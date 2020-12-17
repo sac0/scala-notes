@@ -29,7 +29,7 @@ object JwtAuthorization extends App with SprayJsonSupport {
 
   val superSecretPasswordDb = Map(
     "admin" -> "admin",
-    "daniel" -> "Rockthejvm1!"
+    "Sachin" -> "Rockthejvm1!"
   )
 
   val algorithm = JwtAlgorithm.HS256
