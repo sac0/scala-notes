@@ -22,5 +22,7 @@
     <orderEntry type="library" name="org.iq80.leveldb:leveldb:0.12" level="project" />
     <orderEntry type="library" name="com.typesafe.akka:akka-http_2.13:10.2.2" level="project" />
     <orderEntry type="library" name="org.fusesource.leveldbjni:leveldbjni-all:1.8" level="project" />
+    <orderEntry type="library" name="com.sksamuel.avro4s:avro4s-core_2.13:4.0.3" level="project" />
+    <orderEntry type="library" name="org.scala-lang.modules:scala-parallel-collections_2.13:1.0.0" level="project" />
   </component>
 </module>

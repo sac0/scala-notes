@@ -43,7 +43,7 @@ object EventAdapters extends App {
         addGuitarInventory(guitar, quantity)
     }
 
-    def addGuitarInventory(guitar: Guitar, quantity: Int) = {
+    def addGuitarInventory(guitar: Guitar, quantity: Int): Option[Int] = {
       val existingQuantity = inventory.getOrElse(guitar, 0)
       inventory.put(guitar, existingQuantity + quantity)
     }
@@ -67,7 +67,7 @@ object EventAdapters extends App {
   val system = ActorSystem("eventAdapters", ConfigFactory.load().getConfig("eventAdapters"))
   val inventoryManager = system.actorOf(Props[InventoryManager], "inventoryManager")
 
-  val guitars = for (i <- 1 to 10) yield Guitar(s"$i", s"Hakker $i", "RockTheJVM")
+  val guitars = for (i <- 1 to 10) yield Guitar(s"$i", s"Hacker $i", "RockTheJVM")
 //  guitars.foreach { guitar =>
 //    inventoryManager ! AddGuitar(guitar, 5)
 //  }

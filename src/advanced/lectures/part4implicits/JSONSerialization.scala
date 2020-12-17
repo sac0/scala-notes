@@ -2,7 +2,7 @@ package advanced.lectures.part4implicits
 
 import java.util.Date
 
-import lectures.part4implicits.JSONSerialization.JSONNumber
+import advanced.lectures.part4implicits.JSONSerialization.JSONNumber
 
 /**
   * Created by Sachin.
