@@ -22,7 +22,7 @@ object Intro extends App {
     }
   }
 
-  val t = new HelloThread
+  //  val t = new HelloThread
   //starts a new thread
   //  t.start()
 
@@ -52,14 +52,16 @@ object Intro extends App {
     t.start()
     t
   }
-//  startThread
-//  startThread
-//  startThread
+
+  //  startThread
+  //  startThread
+  //  startThread
 
   /**
    * Each object has a monitor. Only a single thread can hold the monitor for an object
    */
   private val x = AnyRef
+
   def startSynchronizedThread: Runnable = x.synchronized {
     val t = new Thread {
       override def run(): Unit = {
@@ -70,10 +72,69 @@ object Intro extends App {
     t.start()
     t
   }
-  startSynchronizedThread
-  startSynchronizedThread
-  startSynchronizedThread
 
+  //  startSynchronizedThread
+  //  startSynchronizedThread
+  //  startSynchronizedThread
+  /**
+   * Invocations synchronized can nest. Use more fine grained
+   * Take a monitor on account a1 and then a2 and do the transfer of funds
+   */
+  /**
+   * AccountA.synchronized { AccountB.synchronized {transfer amount}}
+   * This is prone to deadlock - Manage same order
+   * access the amount to transfer by checking if id's of accounts
+   * if a < b transfer(a,b,n) else transfer(b,a,-n)
+   */
+  /**
+   * Evaluating parallel programs
+   * Calculate worst case asymptotic performance
+   * Performance is a factor of
+   * processor speed
+   * cache control - false sharing associativity
+   * number of processors
+   * memory latency
+   * Runtime - garbage collection, jit, threas scheduling
+   *
+   * Steps to mitigate
+   * multiple repetitions
+   * statistical treatment - eliminating outliers, calculating mean and variance
+   * ensuring steady state warmup
+   * https://dri.es/files/oopsla07-georges.pdf - Georges Buytaert statistically rigorous java evaluation
+   *
+   */
+  /**
+   * First the jvm interprets the program
+   * parts of the program are converted to bytecode
+   * later additional optimizations
+   * scalameter gives a function withWarmer
+   * Run scalameter with the following options
+   * IgnoringGC
+   * OutlierElimination
+   * Calculate the count GC Pauses that occurred
+   * Memory footprint
+   */
+  /**
+   * Choice of data structures
+   * we cannot use list since splitting it and concatenating are linear operations
+   * we can use arrays or trees - trees do not have good locality
+   */
+
+  import org.scalameter._
+
+  (1 to 20).foreach { _ =>
+    val time = measure {
+      (0 to 100000).toArray
+    }
+    println(s"Time taken to construct array is $time")
+  }
+  /**
+   * operatives that are associative but not commutative
+   * string concatenation and matrix multiplications of same size square matrices
+   * floating point addition is commutative but not associative
+   * we can also have functions like f(x,y)= x^2 + y^2
+   * 
+   */
 
 
 }
