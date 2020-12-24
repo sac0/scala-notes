@@ -133,7 +133,14 @@ object Intro extends App {
    * string concatenation and matrix multiplications of same size square matrices
    * floating point addition is commutative but not associative
    * we can also have functions like f(x,y)= x^2 + y^2
-   * 
+   *
+   */
+  /**
+   * Data parallel workloads
+   * Mandelbrot set . when the the amount of work depends on the point and the iterations
+   * it is not a uniform workload distribution across x -> from i->1->n work(i) is different
+   * Learnt about balanced trees builder and combiner
+   * why certain operation takes linear time but some take lesser time mutable immutable differences
    */
 
 
