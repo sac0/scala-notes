@@ -74,6 +74,10 @@ object examples extends App {
   println(isSortedArr.mkString("Array(", ", ", ")"))
   // Polymorphic functions are often so constrained by their type
   // that they only have one implementation! Here's an example:
+  /**
+   * It’s like saying, “If I can give you a carrot for an apple and a banana, and you already gave me an apple,
+   * you just have to give me a banana and I’ll give you a carrot.
+   */
 
   def partial1[A, B, C](a: A, f: (A, B) => C): B => C =
     (b: B) => f(a, b)
@@ -93,7 +97,7 @@ object examples extends App {
 
   /**
    * NB: There is a method on the `Function` object in the standard library,
-   * `Function.uncurried` that you can use for uncurrying.
+   * `Function.uncurried` that you can use for un currying.
    * Note that we can go back and forth between the two forms. We can curry
    * and uncurry and the two forms are in some sense "the same". In FP jargon,
    * we say that they are _isomorphic_ ("iso" = same; "morphe" = shape, form),
@@ -101,8 +105,17 @@ object examples extends App {
    */
 
   // Exercise 5: Implement `compose`
-
+  /**
+   * f compose g means first g is applied and then f
+   * There is a function f addThen g which is the same as f(g(x))
+   */
   def compose[A, B, C](f: B => C, g: A => B): A => C =
     a => f(g(a))
+
+  /**
+   *  Polymorphic, higher-order functions often end up being extremely widely applicable, precisely because
+   *  they say nothing about any particular domain and are simply abstracting over a common pattern that occurs
+   *  in many contexts
+   */
 
 }
