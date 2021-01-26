@@ -1,5 +1,7 @@
 package fp.intro.ds
 
+import scala.annotation.tailrec
+
 object DataStructures extends App {
 
   /**
@@ -72,7 +74,24 @@ object DataStructures extends App {
    * to both Seq and ParSeq, being a suitable generalization for when parallelism of a code doesn't matter.
    * They are both relatively newly introduced, so people doesn't use them much yet.
    */
-  // Todo finger tree
-
+  /**
+   * Data Sharing
+   * When data is immutable, how do we write functions that, for example, add or remove elements from a list?
+   * The answer is simple. When we add an element 1 to the front of an existing list, say xs, we return a new list,
+   * in this case Cons(1,xs). Since lists are immutable, we don’t need to actually copy xs; we can just reuse it.
+   * This is called data sharing. Sharing of immutable data often lets us implement functions more efficiently;
+   * we can always return immutable data structures without having to worry about subse- quent code modifying our data.
+   * There’s no need to pessimistically make copies to
+   * 6
+   * Cons(x,xs), we simply return its tail, xs. There’s no real removing going on. The orig- inal list, mylist,
+   * is still available, unharmed. We say that functional data structures are persistent, meaning that existing
+   * references are never changed by operations on the data structure.
+   *
+   * Pessimistic copying can become a problem in large programs. When mutable data is passed through a chain of
+   * loosely coupled components, each component has to make its own copy of the data because other components might
+   * modify it. Immutable data is always safe to share, so we never have to make copies. We find that in the large,
+   * FP can often achieve greater efficiency than approaches that rely on side effects, due to much
+   * greater sharing of data and computation
+   */
 
 }

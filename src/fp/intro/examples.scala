@@ -106,8 +106,8 @@ object examples extends App {
 
   // Exercise 5: Implement `compose`
   /**
-   * f compose g means first g is applied and then f
-   * There is a function f addThen g which is the same as f(g(x))
+   * f compose g means first g is applied and then f -> f(g(x))
+   * There is a function g andThen f  which is the same as f(g(x))
    */
   def compose[A, B, C](f: B => C, g: A => B): A => C =
     a => f(g(a))

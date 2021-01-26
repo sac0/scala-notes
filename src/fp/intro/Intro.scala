@@ -50,7 +50,7 @@ object Intro extends App {
 
       /**
        * This is an example of a side effect. This might start a string of transactions
-       * This can also interact with the databases or the web backend. CAll an API
+       * This can also interact with the databases or the web backend. Call an API
        * buy coffee  returns  a coffee and all these things are happening on the side lines
        * These are side effects
        *
