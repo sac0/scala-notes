@@ -1,4 +1,4 @@
-package fp.intro
+package fp.intro.Intro
 
 import scala.annotation.tailrec
 
@@ -113,9 +113,9 @@ object examples extends App {
     a => f(g(a))
 
   /**
-   *  Polymorphic, higher-order functions often end up being extremely widely applicable, precisely because
-   *  they say nothing about any particular domain and are simply abstracting over a common pattern that occurs
-   *  in many contexts
+   * Polymorphic, higher-order functions often end up being extremely widely applicable, precisely because
+   * they say nothing about any particular domain and are simply abstracting over a common pattern that occurs
+   * in many contexts
    */
 
 }

@@ -1,5 +1,4 @@
-package fp.intro
-
+package fp.intro.Intro
 
 object Intro extends App {
 
