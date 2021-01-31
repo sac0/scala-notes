@@ -4,13 +4,14 @@ object Basics extends App {
 
 
   def failingFn(): Int = {
-    val y: Int = throw new Exception("fail!")
+    //    val y: Int = throw new Exception("fail!")
+    val y = 5
     try {
       val x = 42 + 5
       x + y
     }
     catch {
-      case e: Exception => 43
+      case _: Exception => 43
     }
   }
 
@@ -85,6 +86,31 @@ object Basics extends App {
    * Answer : Option
    */
 
+  /**
+   * Either has only two cases, just like Option. The essential difference is that both cases
+   * carry a value. The Either data type represents, in a very general way, values that can
+   * be one of two things. We can say that it’s a disjoint union of two types. When we use it to
+   * indicate success or failure, by convention the Right constructor is reserved for the
+   * success case (a pun on “right,” meaning correct), and Left is used for failure. We’ve
+   * given the left type parameter the suggestive name E (for error).
+   */
+
+  /**
+   * Lets us design a simple try catch using the knowledge gathered
+   * This doesnt capture the information of the error
+   */
+
+  def Try[A](a: => A): Option[A] =
+    try Some(a)
+    catch {
+      case _: Exception => None
+    }
+
+  def Try[A](a: => A): Either[Exception, A] =
+    try Right(a)
+    catch {
+      case e: Exception => Left(e)
+    }
 
 
 }
