@@ -7,8 +7,11 @@ object Basics extends App {
     val y: Int = throw new Exception("fail!")
     try {
       val x = 42 + 5
-      x+y }
-    catch { case e: Exception => 43 }
+      x + y
+    }
+    catch {
+      case e: Exception => 43
+    }
   }
 
   /**
@@ -33,6 +36,54 @@ object Basics extends App {
    * handle those exceptions. If we forget to check for an exception in failingFn, this won’t be detected until runtime.
    */
 
+  def mean(xs: Seq[Double]): Double =
+    if (xs.isEmpty) throw new ArithmeticException("mean of empty list!")
+    else xs.sum / xs.length
+
+  /**
+   * Partial Functions
+   * The mean function is an example of what’s called a partial function: it’s not defined for
+   * some inputs. A function is typically partial because it makes some assumptions about its
+   * inputs that arent implied by the input types.
+   */
+
+  /**
+   * 1st Possibility
+   * return some sort of bogus value of type Double/ Sentinel Value like Double.NaN
+   *
+   * Problems
+   *  It allows errors to silently propagate—the caller can forget to check this condition and
+   * won’t be alerted by the compiler, which might result in subsequent code not working properly.
+   * Often the error won’t be detected until much later in the code.
+   *
+   *  Besides being error-prone, it results in a fair amount of boilerplate code at call sites, with explicit
+   * if statements to check whether the caller has received a “real” result. This boilerplate is magnified if you
+   * happen to be calling several functions, each of which uses error codes that must be checked
+   * and aggregated in some way.
+   *
+   *  It’s not applicable to polymorphic code. For some output types, we might not even have a sentinel value
+   * of that type even if we wanted to! Consider a function like max, which finds the maximum value in a sequence
+   * according to a custom comparison function:defmax[A](xs:Seq[A])(greater:(A,A)=>Boolean): A.
+   * If the input is empty, we can’t invent a value of type A. Nor can null be used here,
+   * since null is only valid for non-primitive types, and A may in fact be a primitive like Double or Int.
+   *
+   *  It demands a special policy or calling convention of callers—proper use of the mean function would require
+   * that callers do something other than call mean and make use of the result. Giving functions special policies
+   * like this makes it difficult to pass them to higher-order functions, which must treat all arguments uniformly.
+   */
+
+  /**
+   * 2nd Possibility
+   * force the caller to supply an argument that tells us what to do in case we don’t know how to handle the input:
+   * Here mean becomes a total function. It has a drawback of making the callers understand all the undefined cases
+   * and limits them to return a double
+   *
+   * What if mean is called as part of a larger computation and we like to abort that computation if mean is undefined?
+   * Or perhaps we’d like to take some completely different branch in the larger computation in this case?
+   * Simply passing an onEmpty parameter does not give us this freedom.
+   *
+   * Answer : Option
+   */
 
 
 
