@@ -36,7 +36,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   def append[A](a1: List[A], a2: List[A]): List[A] =
     a1 match {
       case Nil => a2
-      case Cons(h, t) => Cons(h, append(t, a2))
+      case Cons(h,t) => Cons(h, append(t, a2))
     }
 
   def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = // Utility functions
@@ -296,7 +296,7 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   /** Implement append in terms of either foldLeft or foldRight. */
 
-  def append[A](l: List[A], r: List[A]): List[A] = {
+  def appendViaFold[A](l: List[A], r: List[A]): List[A] = {
     foldRight(l, r)(Cons(_, _))
   }
 
@@ -304,7 +304,7 @@ object List { // `List` companion object. Contains functions for creating and wo
    * Its runtime should be linear in the total length of all lists. Try to use functions we have already defined.
    */
   def concat[A](l: List[List[A]]): List[A] = {
-    foldRight(l, Nil: List[A])(append)
+    foldRight(l, Nil: List[A])(List.append)
   }
 
   /**

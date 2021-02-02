@@ -46,10 +46,9 @@ object Tree {
 
   def sizeViaFold[A](t: Tree[A]): Int = fold(t)(_ => 1)(1 + _ + _)
 
-  def maximumViaFold(t: Tree[Int]): Int = fold(t)(_)(_ max _)
-
   def maximumViaFold(t: Tree[Int]): Int =
     fold(t)(a => a)(_ max _)
+
 
   def depthViaFold[A](t: Tree[A]): Int =
     fold(t)(a => 0)((d1, d2) => 1 + (d1 max d2))

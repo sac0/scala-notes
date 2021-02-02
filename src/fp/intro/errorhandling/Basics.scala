@@ -106,7 +106,7 @@ object Basics extends App {
       case _: Exception => None
     }
 
-  def Try[A](a: => A): Either[Exception, A] =
+  def TryWithEither[A](a: => A): Either[Exception, A] =
     try Right(a)
     catch {
       case e: Exception => Left(e)
