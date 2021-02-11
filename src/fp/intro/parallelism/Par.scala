@@ -116,10 +116,6 @@ object Par {
   def delay[A](fa: => Par[A]): Par[A] =
     es => fa(es)
 
-
-  def delay[A](fa: => Par[A]): Par[A] =
-    es => fa(es)
-
   def choice[A](cond: Par[Boolean])(t: Par[A], f: Par[A]): Par[A] =
     es =>
       if (run(es)(cond).get) t(es) // Notice we are blocking on the result of `cond`.

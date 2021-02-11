@@ -221,8 +221,7 @@ object State {
    * You might think that this is slower than the `foldRight` solution since it
    * walks over the list twice, but it's actually faster! The `foldRight` solution
    * technically has to also walk the list twice, since it has to unravel the call
-   * stack, not being tail recursive. And the call stack will be as tall as the list
-   * is long
+   * stack, not being tail recursive. And the call stack will be as tall as the list is long
    */
 
   def sequenceViaFoldLeft[S, A](l: List[State[S, A]]): State[S, List[A]] =
