@@ -144,7 +144,8 @@ trait Stream[+A] {
    */
   def append[B >: A](s: => Stream[B]): Stream[B] = foldRight(s)(cons(_, _))
 
-  def flatmap[B](f: A => Stream[B]): Stream[B] = foldRight(empty[B])((h, t) => f(h) append t)
+  def flatMap[B](f: A => Stream[B]): Stream[B] =
+    foldRight(empty[B])((h,t) => f(h) append t)
 
 
   def mapViaUnfold[B](f: A => B): Stream[B] =
