@@ -73,7 +73,7 @@ object Intro extends App {
    * as is natural for our problem, and later deal with mapping these onto actual OS threads.
    *
    * This kind of thing can be handled by something like java.util.concurrent.Future,
-   * ExecutorService, and friends.
+   * ExecutorService.
    * Why don’t we use them directly? Here’s a portion of their API:
    * class ExecutorService {
    * def submit[A](a: Callable[A]): Future[A]
@@ -133,7 +133,7 @@ object Intro extends App {
    * This has the rather unfortunate consequence that we’ll strictly construct
    * the entire left half of the tree of summations first before moving
    * on to (strictly) constructing the right half.
-   * if map2 evaluates its argu- ments in parallel
+   * if map2 evaluates its arguments in parallel
    * (using whatever resource is being used to implement the parallelism,
    * like a thread pool), that implies the left half of our computation
    * will start executing before we even begin constructing the right half of our computation.
@@ -164,7 +164,7 @@ object Intro extends App {
   /**
    * Explicit Forking
    * Something doesn't feel right in our latest choice
-   * Is it always the case that we want to evaluate the two argiments in parallel
+   * Is it always the case that we want to evaluate the two arguments in parallel
    * Consider Par.map2(Par.unit(1), Par.unit(1))(_ + _)
    *
    * def fork[A](a: => Par[A]): Par[A]
