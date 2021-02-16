@@ -6,8 +6,9 @@ package fp.intro.laziness
 
 import fp.intro.laziness.Stream._
 
-trait Stream[+A] {
+import scala.annotation.tailrec
 
+trait Stream[+A] {
   // The natural recursive solution
   def toListRecursive: List[A] = this match {
     case Cons(h, t) => h() :: t().toListRecursive
@@ -62,6 +63,12 @@ trait Stream[+A] {
       case Cons(h, t) => f(h(), t().foldRight(z)(f))
       case _ => z
     }
+
+  @tailrec
+  def foldLeft[B](z: B)(f: (B, A) => B): B = this match {
+    case _ => z
+    case Cons(x, xs) => xs().foldLeft(f(z, x()))(f)
+  }
 
   /**
    * Here `b` is the unevaluated recursive step that folds the tail of the stream.
@@ -145,7 +152,7 @@ trait Stream[+A] {
   def append[B >: A](s: => Stream[B]): Stream[B] = foldRight(s)(cons(_, _))
 
   def flatMap[B](f: A => Stream[B]): Stream[B] =
-    foldRight(empty[B])((h,t) => f(h) append t)
+    foldRight(empty[B])((h, t) => f(h) append t)
 
 
   def mapViaUnfold[B](f: A => B): Stream[B] =
@@ -318,5 +325,5 @@ object Stream {
 
   // could also of course be implemented as constant(1)
   val onesViaUnfold: Stream[Int] = unfold(1)(_ => Some((1, 1)))
-  
+
 }
