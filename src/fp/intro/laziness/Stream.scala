@@ -6,8 +6,6 @@ package fp.intro.laziness
 
 import fp.intro.laziness.Stream._
 
-import scala.annotation.tailrec
-
 trait Stream[+A] {
   // The natural recursive solution
   def toListRecursive: List[A] = this match {
@@ -58,13 +56,12 @@ trait Stream[+A] {
    * If `f` doesn't evaluate its second argument, the recursion never occurs.
    * See exists function for a slight variant of second function evaluation
    */
-  def foldRight[B](z: => B)(f: (A, => B) => B): B =
+  def foldRight[B](z: => B)(f: (A, B) => B): B =
     this match {
       case Cons(h, t) => f(h(), t().foldRight(z)(f))
       case _ => z
     }
 
-  @tailrec
   def foldLeft[B](z: B)(f: (B, A) => B): B = this match {
     case _ => z
     case Cons(x, xs) => xs().foldLeft(f(z, x()))(f)

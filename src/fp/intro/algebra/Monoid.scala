@@ -1,4 +1,4 @@
-package fp.intro.algebra.monoid
+package fp.intro.algebra
 
 import fp.intro.testing.Prop.forAll
 import fp.intro.testing.{Gen, Prop}
@@ -241,24 +241,27 @@ object Monoid extends App {
     }
   }
 
-  def productMonoid[A,B](A: Monoid[A], B: Monoid[B]): Monoid[(A, B)] =
+  def productMonoid[A, B](A: Monoid[A], B: Monoid[B]): Monoid[(A, B)] =
     new Monoid[(A, B)] {
       def op(x: (A, B), y: (A, B)): (A, B) =
         (A.op(x._1, y._1), B.op(x._2, y._2))
+
       val zero: (A, B) = (A.zero, B.zero)
     }
 
-  def functionMonoid[A,B](B: Monoid[B]): Monoid[A => B] =
+  def functionMonoid[A, B](B: Monoid[B]): Monoid[A => B] =
     new Monoid[A => B] {
       def op(f: A => B, g: A => B): A => B = a => B.op(f(a), g(a))
+
       val zero: A => B = _ => B.zero
     }
 
-  def mapMergeMonoid[K,V](V: Monoid[V]): Monoid[Map[K, V]] =
+  def mapMergeMonoid[K, V](V: Monoid[V]): Monoid[Map[K, V]] =
     new Monoid[Map[K, V]] {
-      def zero: Map[K, V] = Map[K,V]()
+      def zero: Map[K, V] = Map[K, V]()
+
       def op(a: Map[K, V], b: Map[K, V]): Map[K, V] =
-        (a.keySet ++ b.keySet).foldLeft(zero) { (acc,k) =>
+        (a.keySet ++ b.keySet).foldLeft(zero) { (acc, k) =>
           acc.updated(k, V.op(a.getOrElse(k, V.zero),
             b.getOrElse(k, V.zero)))
         }
@@ -267,8 +270,6 @@ object Monoid extends App {
 
   def bag[A](as: IndexedSeq[A]): Map[A, Int] =
     foldMapV(as, mapMergeMonoid[A, Int](intAddition))((a: A) => Map(a -> 1))
-
-
 
 }
 
@@ -326,7 +327,6 @@ object IndexedSeqFoldable extends Foldable[IndexedSeq] {
 object StreamFoldable extends Foldable[Stream] {
   override def foldRight[A, B](as: Stream[A])(z: B)(f: (A, B) => B): B =
     as.foldRight(z)(f)
-
   override def foldLeft[A, B](as: Stream[A])(z: B)(f: (B, A) => B): B =
     as.foldLeft(z)(f)
 }

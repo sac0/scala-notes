@@ -6,8 +6,8 @@ import fp.intro.testing.{Gen, Prop}
 import language.higherKinds
 
 
-case class ParseError()
-trait Parsers[Parser[+_]] {
+//case class ParseError()
+trait MyParsers[Parser[+_]] {
   self => // so inner classes may call methods of trait
   def run[A](p: Parser[A])(input: String): Either[ParseError, A]
   def or[A](p1: Parser[A], p2: => Parser[A]): Parser[A]
