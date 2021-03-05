@@ -2,6 +2,7 @@ package fp.intro.algebra
 
 import fp.intro.laziness.Stream
 
+
 object Applicative {
 
   /**
@@ -213,7 +214,7 @@ case class Failure[E](head: E, tail: Vector[E] = Vector())
 
 case class Success[A](a: A) extends Validation[Nothing, A]
 
-object Monad {
+object EMonad {
   def eitherMonad[E]: Monad[({type f[x] = Either[E, x]})#f] =
     new Monad[({type f[x] = Either[E, x]})#f] {
       def unit[A](a: => A): Either[E, A] = Right(a)

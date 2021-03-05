@@ -322,5 +322,8 @@ object Stream {
 
   // could also of course be implemented as constant(1)
   val onesViaUnfold: Stream[Int] = unfold(1)(_ => Some((1, 1)))
+  val f = (x: Int) => x
+
+
 
 }
